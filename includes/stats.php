@@ -2,11 +2,6 @@
 
 include('config.php');
 
-$sql = <<<SQL
-    SELECT *
-    FROM `{$table}`
-SQL;
-
 function get_timeago( $ptime ) {
     $estimate_time = time() - $ptime;
 
@@ -33,10 +28,35 @@ function get_timeago( $ptime ) {
     }
 }
 
-if(!$result = $db->query($sql)){
-    die('There was an error running the query [' . $db->error . ']');
+
+if ($details == true) {
+$sql = <<<SQL
+    SELECT *
+    FROM `{$table}`
+SQL;
+
+    if(!$result = $db->query($sql)) {
+        die('There was an error running the query [' . $db->error . ']');
+    } else {
+    	include('pledges.php');
+    }
+
 } else {
-	include('pledges.php');
+$sql = <<<SQL
+    SELECT amount
+    FROM `{$table}`
+SQL;
+
+    if (!$result = $db->query($sql)) {
+        die('There was an error running the query [' . $db->error . ']');
+    } else {
+        $total = '';
+        while($row = $result->fetch_assoc()){
+            $total = $total + $row['amount'];
+        }
+        include('summary.php');
+    }
+
 }
 
 ?>

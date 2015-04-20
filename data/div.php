@@ -1,4 +1,4 @@
 <?php
-$details = true;
+$details = false;
 include('../includes/stats.php');
 ?> 
