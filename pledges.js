@@ -1,3 +1,8 @@
+$.ajaxSetup ({
+    // Disable caching of AJAX responses
+    cache: false
+});
+
 function refreshTable(details) {
 	if (details == true) {
 		$('.results').load('data/table.php', function(){
