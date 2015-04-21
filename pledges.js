@@ -6,11 +6,15 @@ $.ajaxSetup ({
 function refreshTable(details) {
 	if (details == true) {
 		$('.results').load('data/table.php', function(){
-			setTimeout(refreshTable, 5000);
+			setTimeout(function() {
+				refreshTable(true);
+			}, 5000);
 		});
 	} else {
 		$('.results').load('data/div.php', function(){
-			setTimeout(refreshTable, 5000);
+			setTimeout(function() {
+				refreshTable(false);
+			}, 5000);
 		});
 	}
 }
