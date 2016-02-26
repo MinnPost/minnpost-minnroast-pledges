@@ -22,7 +22,7 @@
 
   <header class="minnpost-page-container">
         <a href="http://www.mrpledge.com" class="logo clearfix">
-            <img src="http://www.minnpost.com/sites/default/themes/siteskin/inc/images/logo.png" alt="MinnPost">
+            <img src="https://www.minnpost.com/sites/default/themes/siteskin/inc/images/logo.png" alt="MinnPost">
         </a>
     </header>
 

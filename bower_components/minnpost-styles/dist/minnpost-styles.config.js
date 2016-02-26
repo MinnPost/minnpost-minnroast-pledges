@@ -194,6 +194,80 @@
       "yellow",
       "#FBD341"
     ]
+  ],
+  "colors-political": [
+    [
+      "dfl",
+      "#0793AB"
+    ],
+    [
+      "d",
+      "#0793AB"
+    ],
+    [
+      "gop",
+      "#A1000F"
+    ],
+    [
+      "r",
+      "#A1000F"
+    ],
+    [
+      "ip",
+      "#FF781F"
+    ],
+    [
+      "lib",
+      "#7A7A7A"
+    ],
+    [
+      "swp",
+      "#7A7A7A"
+    ],
+    [
+      "cp",
+      "#7A7A7A"
+    ],
+    [
+      "cg",
+      "#7A7A7A"
+    ],
+    [
+      "gp",
+      "#07AB20"
+    ],
+    [
+      "gr",
+      "#41AB07"
+    ],
+    [
+      "glc",
+      "#41AB07"
+    ],
+    [
+      "lmn",
+      "#7A7A7A"
+    ],
+    [
+      "mop",
+      "#7A7A7A"
+    ],
+    [
+      "edp",
+      "#7A7A7A"
+    ],
+    [
+      "ind",
+      "#7A7A7A"
+    ],
+    [
+      "sl",
+      "#7A7A7A"
+    ],
+    [
+      "jp",
+      "#7A7A7A"
+    ]
   ]
 };
 
@@ -208,7 +282,7 @@
   // Process config
   if (_.isObject(config)) {
     // Process the lists that are meant to be objects
-    lists = ['responsive-points', 'colors-data', 'colors-information', 'colors-interface'];
+    lists = ['responsive-points', 'colors-data', 'colors-information', 'colors-interface', 'colors-political'];
     _.each(lists, function(l, li) {
       var converted = {};
 
@@ -221,6 +295,29 @@
       }
     });
   }
+
+  // Political party names
+  config.politicalParties = {
+    ip: 'Independence',
+    r: 'Republican',
+    dfl: 'Democratic-Farmer-Labor',
+    d: 'Democratic',
+    lib: 'Libertarian Party',
+    swp: 'Socialist Workers Party',
+    cp: 'Constitution Party',
+    cg: 'Constitutional Government',
+    gp: 'Green Party',
+    gr: 'Grassroots Party',
+    glc: 'Grassroots - Legalize Cannabis',
+    lmn: 'Legal Marijuana Now',
+    mop: 'Minnesota Open Progressives',
+    edp: 'Ecology Democracy Party',
+    ind: 'Independent',
+    sl: 'Socialism and Liberation',
+    jp: 'Justice Party',
+    np: 'Nonpartisan',
+    wi: 'Write-In'
+  };
 
   return config;
 

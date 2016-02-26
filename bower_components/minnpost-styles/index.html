@@ -39,7 +39,7 @@
 
         <h3>Browser support</h3>
 
-        <p>MinnPost Styles aims to support all modern browsers and Internet Explorer 8 (IE8).</p>
+        <p>MinnPost Styles aims to support all modern browsers and Internet Explorer 8 (IE8).  See the <a href="#browser" target="_self">browser note section</a> for common notes to users that do not run a supported browser.</p>
 
         <p>IE8 does not support many newer CSS(3) features and so some styles will not be the exact same as other browsers, but the difference should be minor style differences.  IE8 does not support media queries in CSS, so we have to include a library to force it.  <em><strong>Need to figure out.</strong></em></p>
       </div>
@@ -49,7 +49,7 @@
       <div class="section">
         <h2 id="usage">Usage <a href="#usage" target="_self"><i class="fa fa-link xsmall"></i></a></h2>
 
-        <p>It is suggest that you install MinnPost Styles with <a href="http://bower.io/">Bower</a>.  Otherwise, get the code from <a href="https://github.com/minnpost/minnpost-styles">Github</a>.</p>
+        <p>It is suggested that you install MinnPost Styles with <a href="http://bower.io/">Bower</a>.  Otherwise, get the code from <a href="https://github.com/minnpost/minnpost-styles">Github</a>.</p>
 
         <div class="example-code">
           <pre><code>bower install minnpost-styles </code></pre>
@@ -98,12 +98,12 @@
             </thead>
 
             <tbody>
-              <tr><td>Config</td><td>(none)</td></tr>
+              <tr><td>Config</td><td>(default)</td></tr>
               <tr><td><a href="#datatables" target="_self">Datatables</a></td><td><a href="http://datatables.net/">Datatables</a></td></tr>
-              <tr><td>Formatters</td><td>(none)</td></tr>
+              <tr><td>Formatters</td><td>(default)</td></tr>
               <tr><td><a href="#highcharts" target="_self">Highcharts</a></td><td><a href="http://www.highcharts.com/">Highcharts</a></td></tr>
               <tr><td><a href="#maps" target="_self">Maps</a></td><td><a href="http://leafletjs.com/">Leaflet</a></td></tr>
-              <tr><td><a href="#navigation" target="_self">Nav</a></td><td>(none)</td></tr>
+              <tr><td><a href="#navigation" target="_self">Nav</a></td><td>(default)</td></tr>
             </tbody>
           </table>
         </div>
@@ -141,7 +141,7 @@ require(['underscore', 'jquery', 'nav'], function(_, $, nav) {
         <script id="template-color-swatch" type="text/template">
           <div class="cf">
             <% _.each(colors, function(c, ci) { %>
-              <div class="color-swatch bg-color-<%= (type) ? type + '-' : '' %><%= ci %>"><%= ci %> <br> <%= c %></div>
+              <div <% if (typeof titles != 'undefined') { %>title="<%= titles[ci] %>" <% } %>class="color-swatch bg-color-<%= (type) ? type + '-' : '' %><%= ci %>"><%= ci %> <br> <%= c %></div>
             <% }) %>
           </div>
         </script>
@@ -160,6 +160,12 @@ require(['underscore', 'jquery', 'nav'], function(_, $, nav) {
         <p>These colors are used in the interface and already set to the appropriate components.  Though you should not need to often, you can use these as text or background colors with classes like <code>.color-{color-name}</code> or <code>.bg-color-{color-name}</code>.  After including the <code>minnpost-styles.config.js</code>, the colors are available under <code>MP.config['colors-interface']</code>.</p>
 
         <div class="interface-colors-placeholder"></div>
+
+        <h3>Political</h3>
+
+        <p>These colors are used for political parties.  You can use these as text or background colors with classes like <code>.color-political-{color-name}</code> or <code>.bg-color-political-{color-name}</code>.  After including the <code>minnpost-styles.config.js</code>, the colors are available under <code>MP.config['colors-political']</code>.  Full names of political parties can be found in <code>MP.config.politicalParties</code> and can be seen if you hover over the swatches below.</p>
+
+        <div class="political-colors-placeholder"></div>
 
         <h3>Data</h3>
 
@@ -183,12 +189,25 @@ require(['underscore', 'jquery', 'nav'], function(_, $, nav) {
 
         <p>The following are sequential examples to white and diverging examples to the opposite ordered hue.  Use the buttons below to switch the color spaces.  Also, the hexadecimal values for the colors are actually in each block and copyable.</p>
 
-        <div>
+        <form role="form" class="form-inline small color-form">
           <div class="button-group">
-            <button class="button primary active color-example-change" data-color-space="lab">Lab</button>
-            <button class="button primary color-example-change" data-color-space="lch">HCL</button>
+            <button class="button primary active color-example-space" data-color-space="lab">Lab</button>
+            <button class="button primary color-example-space" data-color-space="lch">HCL</button>
           </div>
-        </div>
+
+          <label for="color-example-count">Number of colors:</label>
+          <select id="color-example-count">
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7" selected="true">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+          </select>
+        </form>
 
         <div class="row space-bottom">
           <div class="column-medium-50">
@@ -206,6 +225,50 @@ require(['underscore', 'jquery', 'nav'], function(_, $, nav) {
         <p>This is programatically achieved wtih <a href="https://github.com/gka/chroma.js/">Chroma.js</a> and code similar to:</p>
 
         <pre><code>chroma.scale(['white', '#F55F29']).mode('lab').domain([0,1], 5).colors()</code></pre>
+      </div>
+
+
+
+      <div class="section">
+        <h2 id="browser">Browser notes<a href="#browser" target="_self"><i class="fa fa-link xsmall"></i></a></h2>
+
+        <p>We aim to support down to IE8, but we still want other browsers to have some direction on how to upgrade, or that though the piece may work, some parts may be missing.</p>
+
+        <h3>Javascript is not enabled</h3>
+
+        <p>Though this is highly unlikely these days and given our audience, it's still important to note if the interface is based heavily on Javascript.</p>
+
+        <div class="example ">
+          <p class="noscript-note">This application requires Javascript which is used to make your web browser more interactive.  If this message does not go away, please consider enabling Javascript.  Here are <a href="http://www.enable-javascript.com/" target="_blank">instructions on how to enable JavaScript in your web browser</a>.</p>
+        </div>
+        <div class="example-code">
+<pre><code>&lt;noscript&gt;
+  &lt;p class="noscript-note"&gt;This application requires Javascript which is used to make your web browser more interactive.  If this message does not go away, please consider enabling Javascript.  Here are &lt;a href="http://www.enable-javascript.com/" target="_blank"&gt;instructions on how to enable JavaScript in your web browser&lt;/a&gt;.&lt;/p&gt;
+&lt;/noscript&gt; </code></pre>
+        </div>
+
+        <h3>Browser is not fully supported</h3>
+
+        <p>Depending on what browser is supported, you should change the IE conditional.</p>
+
+        <div class="example ">
+          <div class="browser-upgrade-note">
+            <h4>Consider upgrading your browser</h4>
+            <p>Your <strong>Internet Browser</strong> is the application you use to navigate webpages on the internet.  You are currently using an older version of Internet Explorer.  This application may not be full-featured because you are using such an old browser.</p>
+
+            <p><a href="http://browsehappy.com/" target="_blank">Click here to find out about upgrading to a newer browser</a>.</p>
+          </div>
+        </div>
+        <div class="example-code">
+<pre><code>&lt;!--[if lte IE 8]&gt;
+&lt;div class="browser-upgrade-note"&gt;
+  &lt;h4&gt;Consider upgrading your browser&lt;/h4&gt;
+  &lt;p&gt;Your &lt;strong&gt;Internet Browser&lt;/strong&gt; is the application you use to navigate webpages on the internet.  You are currently using an older version of Internet Explorer.  This application may not be full-featured because you are using such an old browser.&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href="http://browsehappy.com/" target="_blank"&gt;Click here to find out about upgrading to a newer browsers&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;![endif]--&gt; </code></pre>
+        </div>
       </div>
 
 
@@ -308,6 +371,10 @@ require(['underscore', 'jquery', 'nav'], function(_, $, nav) {
 
       <div class="section">
         <h2 id="typography">Typography <a href="#typography" target="_self"><i class="fa fa-link xsmall"></i></a></h2>
+
+        <h3>Font</h3>
+
+        <p>Our overall guideline is to use <a href="http://www.google.com/fonts/specimen/Montserrat">Montserrat</a> for headings and <a href="https://www.google.com/fonts/specimen/Open+Sans">Open Sans</a> for other typograhy.  Use <code>.font-heading</code> and <code>.font-text</code> to override and set a specific font.</p>
 
         <h3>Headings</h3>
 
@@ -1104,7 +1171,36 @@ require(['underscore', 'jquery', 'nav'], function(_, $, nav) {
       <div class="section">
         <h2 id="navigation">Navigation <a href="#navigation" target="_self"><i class="fa fa-link xsmall"></i></a></h2>
 
-        <h3>Sticky top navigation</h3>
+        <p>Overall, data or interactive pieces should guide people through the story or visuals, but sometimes you just need some simple navigation to allow readers to explore.</p>
+
+        <h3>Horizontal navigation</h3>
+
+        <div class="example">
+          <div>
+            <div class="navigation horizontal example-nav">
+              <ul>
+                <li><a href="#" class="active">Sec 1</a></li>
+                <li><a href="#">Sec 2</a></li>
+                <li><a href="#">Sec 3</a></li>
+                <li><a href="#">Sec 4</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="example-code">
+<pre><code>&lt;div class="navigation horizontal"&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href="#" class="active"&gt;Sec 1&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#"&gt;Sec 2&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#"&gt;Sec 3&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#"&gt;Sec 4&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <h3>Sticky horizontal navigation</h3>
+
+        <p>The following is an example of horizontal navigation that remains stuck at the top of the window when scrolling past it, but this only happens within a parent container.  Also, this is an example of the simple "scoll-spying" mechanism that automatically activates the navigation link if that section is in view.</p>
 
         <div class="example">
           <div>
@@ -1137,10 +1233,37 @@ require(['underscore', 'jquery', 'nav'], function(_, $, nav) {
           </div>
         </div>
         <div class="example-code">
-  <pre><code> </code></pre>
+<pre><code>&lt;div&gt;
+  &lt;div class="navigation horizontal example-stick-top"&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href="#" class="active" data-spy-on="section01"&gt;Sec 1&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="#" data-spy-on="section02"&gt;Sec 2&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="#" data-spy-on="section03"&gt;Sec 3&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="#" data-spy-on="section04"&gt;Sec 4&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+
+  &lt;h4 data-spy-me="section01"&gt;Section 01&lt;/h4&gt;
+
+  &lt;p&gt;Kitty ipsum dolor s ... &lt;/p&gt;
+
+  ...
+&lt;/div&gt;
+
+&lt;script&gt;
+// Scroll spy will look for elements that have matching attibutes
+$('body').mpScrollSpy();
+
+// mpStick will use sensible defaults
+$('.example-stick-top').mpStick();
+&lt;/script&gt;</code></pre>
         </div>
 
         <h3>Sticky vertical navigation</h3>
+
+        <p>Navigation is actually vertical by default.  This examples shows the use options in <code>mpStick()</code>.</p>
+
+        <p><em><strong>Note that on screens smaller than "medium", this does not work well, but should just need some responsive styling to make work fine.</strong></em></p>
 
         <div class="example">
           <div class="row">
@@ -1190,7 +1313,85 @@ require(['underscore', 'jquery', 'nav'], function(_, $, nav) {
           </div>
         </div>
         <div class="example-code">
-  <pre><code> </code></pre>
+<pre><code>&lt;div class="row"&gt;
+  &lt;div class="column-medium-33"&gt;
+    &lt;div class="example-stick-container"&gt;
+      &lt;div class="navigation"&gt;
+        &lt;ul&gt;
+          &lt;li&gt;&lt;a href="#" class="active" data-spy-on="section01b"&gt;Sec 1&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href="#" data-spy-on="section02b"&gt;Sec 2&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href="#" data-spy-on="section03b"&gt;Sec 3&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href="#" data-spy-on="section04b"&gt;Sec 4&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class="column-medium-66"&gt;
+
+    &lt;h4 data-spy-me="section01b"&gt;Section 01&lt;/h4&gt;
+
+    &lt;p&gt;Kitt .... &lt;/p&gt;
+
+    ...
+
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+// Scroll spy will look for elements that have matching attibutes
+$('body').mpScrollSpy();
+
+// mpStick with custom options
+$('.example-stick-container').mpStick({
+  activeClass: 'stuck container',
+  wrapperClass: '',
+  container: $('.example-stick-container').parent().parent(),
+  topPadding: 20,
+  throttle: 100
+});
+&lt;/script&gt;</code></pre>
+        </div>
+
+        <h3>Stick plugin</h3>
+
+        <p>Use the <code>$().mpStick()</code> jQuery plugin to make a navigation or other item sticky within a container.  Best use is on the navigation container.</p>
+
+        <div class="table-responsive-small">
+          <table class="striped">
+            <thead>
+              <tr><th>Option</th><th>Description</th><th>Default</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>container</code></td><td>The container element or selector to stick within.</td><td>The parent of the item being stuck.</td></tr>
+              <tr><td><code>activeClass</code></td><td>A class or set of classes to add when the stickiness is applied.</td><td><code>stuck top</code></td></tr>
+              <tr><td><code>wrapperClass</code></td><td>A class or set of classes to add to the wrapper element that is wrapped around the original elements when stuck.  Leave blank to not add a wrapper element.</td><td><code>minnpost-full-container</code></td></tr>
+              <tr><td><code>topPadding</code></td><td>The padding in pixels from the top of the container to where the stickiness should start.</td><td><code>0</code></td></tr>
+              <tr><td><code>throttle</code></td><td>The amount of time in milliseconds to wiat when listening to scoll events.</td><td><code>90</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Scoll-spy plugin</h3>
+
+        <p>Use the <code>$().mpScrollSpy()</code> jQuery plugin to connect elements, like navigation, to other sections of the page.  The plugin also creates go-to events, like click, for the connected elements for smooth scrolling.</p>
+
+        <p>Use the attributes <code>data-spy-on</code> and <code>data-spy-me</code> to connect elements; the values should be unique and matching.  This plugin should be used on an element that contains both connected sets of elements, for example <code>$('body').mpScrollSpy()</code>.</p>
+
+        <div class="table-responsive-small">
+          <table class="striped">
+            <thead>
+              <tr><th>Option</th><th>Description</th><th>Default</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>activeClass</code></td><td>The class to add to the element that is spying when the connected element is in view.</td><td><code>active</code></td></tr>
+              <tr><td><code>offset</code></td><td>The amount in pixels to offset when an item is in view and where to scroll to.</td><td><code>80</code></td></tr>
+              <tr><td><code>gotoEvent</code></td><td>The DOM event to use to trigger the go-to event.  Leave blank to not listen to anything.</td><td><code>click</code></td></tr>
+              <tr><td><code>gotoPreventDefault</code></td><td>Whether or not to prevent the default event action for the go-to event.</td><td><code>true</code></td></tr>
+              <tr><td><code>gotoSpeed</code></td><td>The amount in milliseconds that the scroll animation will take.</td><td><code>600</code></td></tr>
+              <tr><td><code>throttle</code></td><td>The amount of time in milliseconds to wiat when listening to scoll events.</td><td><code>200</code></td></tr>
+            </tbody>
+          </table>
         </div>
       </div>
 
@@ -1407,7 +1608,7 @@ L.marker(MP.maps.stPaulPoint, { icon: iconBlank })
   });
 
 // GeoJSON example
-$.getJSON('http://boundaries.minnpost.com/1.0/boundary/27-county-2010/?callback=?', function(data) {
+$.getJSON('https://boundaries.minnpost.com/1.0/boundary/27-county-2010/?callback=?', function(data) {
   if (data.simple_shape) {
     L.geoJson(data.simple_shape, {
       style: MP.maps.mapStyle,
@@ -1432,7 +1633,7 @@ $.getJSON('http://boundaries.minnpost.com/1.0/boundary/27-county-2010/?callback=
       <div class="section">
         <h2 id="datatables">Datatables <a href="#datatables" target="_self"><i class="fa fa-link xsmall"></i></a></h2>
 
-        <p><a href="http://datatables.net/">Datatables</a> is a plugin that makes tables searchable, filterable, paged, and more.  It is useful for providing lots of tabular data.</p>
+        <p><a href="http://datatables.net/">Datatables</a> is a plugin that makes tables searchable, filterable, paged, and more.  It is useful for providing lots of tabular data.  The MinnPost styling of DataTables requires FontAwesome icons; please see the appropriate section on how to include it.</p>
 
         <div class="example">
           <div class="datatable datatable-example">
@@ -1444,8 +1645,54 @@ $.getJSON('http://boundaries.minnpost.com/1.0/boundary/27-county-2010/?callback=
           </div>
         </div>
         <div class="example-code">
-<pre><code></code></pre>
+<pre><code>
+// Define specific about how the columns work.
+var tableColumns = $.extend(true, {}, {
+  0: { sTitle: 'Thing' },
+  1: { sTitle: 'Date' },
+  // Makes it so that the last name column sorts on
+  // both last and first name
+  4: {
+    sTitle: 'Last',
+    aDataSort: [4, 5]
+  },
+  5: {
+    sTitle: 'First',
+    bSortable: false
+  },
+  3: {
+    sTitle: 'Number',
+    bSearchable: false,
+    mRender: function(data, type, full) {
+      return MP.formatters.integer(parseFloat(data));
+    }
+  },
+  2: {
+    sTitle: 'Money',
+    sClass: 'money',
+    bSearchable: false,
+    mRender: function(data, type, full) {
+      return MP.formatters.currency(parseFloat(data));
+    }
+  }
+});
+var options = $.extend(true, {}, {
+  aaData: yourDataHere,
+  aoColumns: _.values(tableColumns)
+}, options);
+
+MP.datatables.makeTable($('.datatable-example'), options);
+</code></pre>
         </div>
+      </div>
+
+
+
+
+      <div class="section">
+        <h2 id="storymap">StoryMap <a href="#storymap" target="_self"><i class="fa fa-link xsmall"></i></a></h2>
+
+        <p>See the <a href="demo/storymap.html" target="_self">StoryMap preview on this page</a>.</p>
       </div>
 
 
@@ -1474,9 +1721,22 @@ $.getJSON('http://boundaries.minnpost.com/1.0/boundary/27-county-2010/?callback=
 
 
 
-
     <script src="bower_components/holderjs/holder.js"></script>
     <script data-main="demo/demo" src="bower_components/requirejs/require.js"></script>
+
+    <!-- Google analytics -->
+  	<script type="text/javascript">
+      if (window.location && window.location.hostname &&
+        window.location.hostname.toLowerCase().indexOf('minnpost.com') !== -1) {
+    	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    	  ga('create', 'UA-3385191-3', 'auto');
+    	  ga('send', 'pageview');
+      }
+  	</script>
 
   </body>
 </html>
