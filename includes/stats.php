@@ -33,6 +33,7 @@ if ($details == true) {
 $sql = <<<SQL
     SELECT *
     FROM `{$table}`
+    WHERE YEAR(created) = YEAR(CURDATE())
 SQL;
 
     if(!$result = $db->query($sql)) {
@@ -45,6 +46,7 @@ SQL;
 $sql = <<<SQL
     SELECT amount
     FROM `{$table}`
+    WHERE YEAR(created) = YEAR(CURDATE())
 SQL;
 
     if (!$result = $db->query($sql)) {

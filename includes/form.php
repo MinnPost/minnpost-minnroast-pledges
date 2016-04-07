@@ -1,6 +1,6 @@
 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
     <section>
-        <h3 class="component-label">Your Pledge</h3>
+        <h3 class="component-label">Pledge to support MinnPost's election coverage!</h3>
         <div class="form-item">
             <label>Email address
               <input type="email" autocapitalize="off" autocorrect="off" name="email" id="email" value="<?php echo $email; ?>" required="required">
@@ -14,8 +14,8 @@
         </div>
 
         <div class="form-item checkbox">
-            <label>Charge card if MinnPost has it on file
-              <input type="checkbox" name="charge_if_on_file" id="charge_if_on_file" value="1">
+            <label>Charge your credit card if MinnPost has it on file
+              <input type="checkbox" name="charge_if_on_file" id="charge_if_on_file" value="1" checked>
             </label>
         </div>
 
