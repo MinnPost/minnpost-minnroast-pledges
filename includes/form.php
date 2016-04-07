@@ -13,6 +13,12 @@
             </label>
         </div>
 
+        <div class="form-item checkbox">
+            <label>Charge card if MinnPost has it on file
+              <input type="checkbox" name="charge_if_on_file" id="charge_if_on_file" value="1">
+            </label>
+        </div>
+
     </section>
 
     <button class="button primary" type="submit">Send Your Pledge</button>

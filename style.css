@@ -30,6 +30,10 @@
     bottom: 0.5em;
     left: 0.25em;
 }
+.mp .checkbox label, .mp .radio label {
+	line-height: 1;
+	vertical-align: top;
+}
 .mp label input[type="number"] {
 	padding-left: 1em;
 }
