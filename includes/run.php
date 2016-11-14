@@ -1,5 +1,7 @@
 <?php
 
+include('config.php');
+
 if ($_SERVER['REQUEST_METHOD'] != 'POST') {
 	if (isset($_GET['email'])) {
 		$value = $_GET['email'];
@@ -33,7 +35,6 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST') {
 	}
 
 	if ( isset($email) && isset($amount) && $valid == TRUE) {
-		include('config.php');
 		$sql = "INSERT INTO `{$table}` (email, amount, created, charge_if_on_file) VALUES ('$email', '$amount', NOW(), '$charge_if_on_file' )";
 
 		if(!$result = $db->query($sql)){

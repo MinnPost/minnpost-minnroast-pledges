@@ -1,3 +1,6 @@
+<?php
+include('config.php');
+?>
 <!doctype html>
 
 <!--[if lt IE 7]> <html class="no-js ie ie6 lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en" xmlns:og="http://opengraphprotocol.org/schema/"> <![endif]-->
@@ -7,7 +10,7 @@
 <!--[if gt IE 9]><!--> <html class="no-js" lang="en" xmlns:og="http://opengraphprotocol.org/schema/"> <!--<![endif]-->
 
 <head>
-<title>MinnPost | MinnRoast Pledge</title>
+<title>MinnPost | <?php echo $title; ?></title>
 <link rel="shortcut icon" href="//www.minnpost.com/sites/default/themes/siteskin/favicon.ico" type="image/x-icon" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -21,7 +24,7 @@
 <div class="mp">
 
   <header class="minnpost-page-container">
-        <a href="http://www.mrpledge.com" class="logo clearfix">
+        <a href="<?php echo $url; ?>" class="logo clearfix">
             <img src="https://www.minnpost.com/sites/default/themes/siteskin/inc/images/logo.png" alt="MinnPost">
         </a>
     </header>

@@ -1,6 +1,6 @@
 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
     <section>
-        <h3 class="component-label">Pledge to support MinnPost's election coverage!</h3>
+        <h3 class="component-label"><?php echo $main_label; ?></h3>
         <div class="form-item">
             <label>Email address
               <input type="email" autocapitalize="off" autocorrect="off" name="email" id="email" value="<?php echo $email; ?>" required="required">

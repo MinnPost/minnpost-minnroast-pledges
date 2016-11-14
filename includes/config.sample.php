@@ -7,3 +7,7 @@ if($db->connect_errno > 0){
 }
 
 $table = 'tablename';
+$url = 'http://mainurl.com';
+$title = 'Site Title';
+$main_label = "Pledge to support ---";
+$thanks_label = "Thank you for supporting ---";
