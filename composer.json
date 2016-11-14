@@ -1,5 +1,8 @@
 {
   "require-dev": {
     "heroku/heroku-buildpack-php": "*"
+  },
+  "require": {
+    "herrera-io/silex-pdo": "^1.2"
   }
 }
