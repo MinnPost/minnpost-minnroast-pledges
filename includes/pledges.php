@@ -1,5 +1,5 @@
 <table class="all-pledges">
-<?php $total = ''; $counter = 0; while($row = $result->fetch_assoc()){ $total = $total + $row['amount']; ?>
+<?php $total = ''; $counter = 0; while($row = $result->fetch(PDO::FETCH_ASSOC)){ $total = $total + $row['amount']; ?>
 	<tr>
 		<td class="count"><?php echo ++$counter; ?></td>
 		<td class="amount"><strong>&#36;<?php echo number_format($row['amount']); ?></strong></td>

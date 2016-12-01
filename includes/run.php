@@ -29,20 +29,19 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST') {
     	$valid = FALSE;
 	}
 
-	$charge_if_on_file = filter_var($_POST['charge_if_on_file'], FILTER_SANITIZE_NUMBER_INT);
-	if ($charge_if_on_file === '') {
+	if (!isset($_POST['charge_if_on_file'])) {
 		$charge_if_on_file = 0;
+	} else {
+		$charge_if_on_file = filter_var($_POST['charge_if_on_file'], FILTER_SANITIZE_NUMBER_INT);
 	}
 
 	if ( isset($email) && isset($amount) && $valid == TRUE) {
-		$sql = "INSERT INTO `{$table}` (email, amount, created, charge_if_on_file) VALUES ('$email', '$amount', NOW(), '$charge_if_on_file' )";
-
-		if(!$result = $db->query($sql)){
-			die('There was an error running the query [' . $db->error . ']');
+		$sql = "INSERT INTO {$table} (email, amount, created, charge_if_on_file) VALUES ('$email', '$amount', NOW(), '$charge_if_on_file' )";
+		if (!$result = $db->query($sql)) {
+			die('There was an error running the query [' . print_r($db->errorInfo()) . ']');
 		} else {
 			$amount = number_format($amount, 2);
 		}
-
 		include('message.php');
 	} else {
 		include('form.php');

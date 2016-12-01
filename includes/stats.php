@@ -32,11 +32,11 @@ function get_timeago( $ptime ) {
 if ($details == true) {
 $sql = <<<SQL
     SELECT *
-    FROM `{$table}`
-    WHERE YEAR(created) = YEAR(CURDATE())
+    FROM {$table}
+    WHERE date_part('year', created) = date_part('year', CURRENT_DATE)
 SQL;
 
-    if(!$result = $db->query($sql)) {
+    if (!$result = $db->query($sql)) {
         die('There was an error running the query [' . $db->error . ']');
     } else {
     	include('pledges.php');
@@ -45,15 +45,15 @@ SQL;
 } else {
 $sql = <<<SQL
     SELECT amount
-    FROM `{$table}`
-    WHERE YEAR(created) = YEAR(CURDATE())
+    FROM {$table}
+    WHERE date_part('year', created) = date_part('year', CURRENT_DATE)
 SQL;
 
     if (!$result = $db->query($sql)) {
         die('There was an error running the query [' . $db->error . ']');
     } else {
         $total = '';
-        while($row = $result->fetch_assoc()){
+        while($row = $result->fetch(PDO::FETCH_ASSOC)){
             $total = $total + $row['amount'];
         }
         include('summary.php');

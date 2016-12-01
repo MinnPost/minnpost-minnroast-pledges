@@ -1,5 +1,5 @@
 <?php
-$count = $result->num_rows;
+$count = $result->fetchColumn();
 ?>
 
 <div class="total-pledges">
