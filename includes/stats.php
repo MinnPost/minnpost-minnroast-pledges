@@ -1,6 +1,6 @@
 <?php
 
-include('config.php');
+require_once('includes/config.php');
 
 function get_timeago( $ptime ) {
     $estimate_time = time() - $ptime;
@@ -39,7 +39,7 @@ SQL;
     if (!$result = $db->query($sql)) {
         die('There was an error running the query [' . $db->error . ']');
     } else {
-    	include('pledges.php');
+    	require_once('includes/pledges.php');
     }
 
 } else {
@@ -56,7 +56,7 @@ SQL;
         while($row = $result->fetch(PDO::FETCH_ASSOC)){
             $total = $total + $row['amount'];
         }
-        include('summary.php');
+        require_once('includes/summary.php');
     }
 
 }
