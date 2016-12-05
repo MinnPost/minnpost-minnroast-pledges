@@ -1,6 +1,6 @@
 <?php
 
-require_once('includes/config.php');
+require_once('/app/www/includes/config.php');
 
 if ($_SERVER['REQUEST_METHOD'] != 'POST') {
 	if (isset($_GET['email'])) {
@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST') {
 		$email = '';
 	}
 	$amount = '';
-	require_once('includes/form.php');
+	require_once('/app/www/includes/form.php');
 } else {
 	$valid = TRUE;
 	$email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
@@ -42,9 +42,9 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST') {
 		} else {
 			$amount = number_format($amount, 2);
 		}
-		require_once('includes/message.php');
+		require_once('/app/www/includes/message.php');
 	} else {
-		require_once('includes/form.php');
+		require_once('/app/www/includes/form.php');
 	}
 }
 

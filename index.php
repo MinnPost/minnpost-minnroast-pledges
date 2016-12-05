@@ -1,3 +1,3 @@
-<?php include('includes/head.php'); ?>
-<?php include('includes/run.php'); ?>    
-<?php include('includes/footer.php'); ?>
+<?php require_once('/app/www/includes/head.php'); ?>
+<?php require_once('/app/www/includes/run.php'); ?>    
+<?php require_once('/app/www/includes/footer.php'); ?>

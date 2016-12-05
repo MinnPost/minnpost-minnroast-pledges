@@ -1,5 +1,5 @@
 <?php
-require_once(  __DIR__ . '/../includes/config.php');
+require_once('/app/www/includes/config.php');
 ?>
 <!doctype html>
 
