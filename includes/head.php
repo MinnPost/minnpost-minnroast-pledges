@@ -1,6 +1,6 @@
 <?php
-echo 'try to include this file: ' . realpath('/../../../../includes/config.php');
-require_once('/../../../../includes/config.php');
+echo 'try to include this file: ' . realpath('/../../../../includes');
+//require_once('/../../../../includes/config.php');
 ?>
 <!doctype html>
 
