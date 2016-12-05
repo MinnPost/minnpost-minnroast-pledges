@@ -1,5 +1,13 @@
 <?php
-echo 'try to include this file: ' . realpath('/../../../../includes');
+echo 'files exist? ' .
+file_exists('/../../../../includes/config.php') .
+file_exists('../../../../includes/config.php') .
+file_exists('../../../includes/config.php') .
+file_exists('/../../includes/config.php') . 
+file_exists('../../includes/config.php') . 
+file_exists('/../includes/config.php') .
+file_exists('../includes/config.php') . 
+file_exists('includes/config.php');
 //require_once('/../../../../includes/config.php');
 ?>
 <!doctype html>
