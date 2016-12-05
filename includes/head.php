@@ -1,6 +1,6 @@
 <?php
 echo 'this path is ' . getcwd() . ' and the include path is ' . get_include_path();
-require_once('/app/includes/config.php');
+require_once('/../../../../includes/config.php');
 ?>
 <!doctype html>
 
