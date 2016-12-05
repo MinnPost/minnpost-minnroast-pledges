@@ -1,5 +1,5 @@
 <?php
-echo 'this path is ' . getcwd() . ' and the include path is ' . get_include_path();
+echo 'try to include this file: ' . realpath('/../../../../includes/config.php');
 require_once('/../../../../includes/config.php');
 ?>
 <!doctype html>
