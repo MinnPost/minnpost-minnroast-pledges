@@ -1,5 +1,7 @@
 <?php
 echo 'files exist? ' .
+file_exists('/../../../../../includes/config.php') .
+file_exists('../../../../../includes/config.php') .
 file_exists('/../../../../includes/config.php') .
 file_exists('../../../../includes/config.php') .
 file_exists('../../../includes/config.php') .
