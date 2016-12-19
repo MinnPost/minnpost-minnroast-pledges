@@ -1,5 +1,5 @@
 <?php
-echo 'files exist? ' .
+echo 'files exist? ' . dirname(__FILE__) . '/config.php' . 
 file_exists('../includes/config.php');
 //require_once('/../../../../includes/config.php');
 ?>
