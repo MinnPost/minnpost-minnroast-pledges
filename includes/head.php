@@ -1,8 +1,4 @@
-<?php
-echo 'files exist? ' .
-file_exists('includes/config.php');
-//require_once('/../../../../includes/config.php');
-?>
+<?php require_once('includes/config.php'); ?>
 <!doctype html>
 
 <!--[if lt IE 7]> <html class="no-js ie ie6 lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en" xmlns:og="http://opengraphprotocol.org/schema/"> <![endif]-->
