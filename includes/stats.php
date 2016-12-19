@@ -30,7 +30,7 @@ function get_timeago( $ptime ) {
 
 if ($details == true) {
 
-    if ($where === 'pgsql') {
+    if ($dbtype === 'pgsql') {
         $where = "date_part('year', created) = date_part('year', CURRENT_DATE)";
     } else {
         $where = "YEAR(created) = YEAR(CURDATE())";
@@ -50,7 +50,7 @@ SQL;
 
 } else {
 
-    if ($where === 'pgsql') {
+    if ($dbtype === 'pgsql') {
         $where = "date_part('year', created) = date_part('year', CURRENT_DATE)";
     } else {
         $where = "YEAR(created) = YEAR(CURDATE())";
