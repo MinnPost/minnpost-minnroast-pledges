@@ -54,7 +54,7 @@ SQL;
     } else {
         $total = '';
         while($row = $result->fetch(PDO::FETCH_ASSOC)){
-            $total = $total + $row['amount'];
+            $total = (int) $total + (int) $row['amount'];
         }
         require_once('includes/summary.php');
     }
