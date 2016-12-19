@@ -6,12 +6,13 @@ if (file_exists('.env')) {
 	$dotenv->load();
 }
 
+$dbtype = getenv('DATABASE_TYPE');
 $dbname = getenv('DATABASE_NAME');
 $host = getenv('DATABASE_HOST');
 $dbuser = getenv('DATABASE_USER');
 $dbpass = getenv('DATABASE_PASS');
 
-$db = new PDO("pgsql:dbname=$dbname;host=$host", $dbuser, $dbpass); 
+$db = new PDO("$dbtype:dbname=$dbname;host=$host", $dbuser, $dbpass); 
 
 $table = getenv('DATABASE_TABLE');
 $url = getenv('ROOT_URL');

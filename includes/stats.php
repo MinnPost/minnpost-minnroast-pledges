@@ -28,12 +28,18 @@ function get_timeago( $ptime ) {
     }
 }
 
-
 if ($details == true) {
+
+    if ($where === 'pgsql') {
+        $where = "date_part('year', created) = date_part('year', CURRENT_DATE)";
+    } else {
+        $where = "YEAR(created) = YEAR(CURDATE())";
+    }
+
 $sql = <<<SQL
     SELECT *
     FROM {$table}
-    WHERE date_part('year', created) = date_part('year', CURRENT_DATE)
+    WHERE $where
 SQL;
 
     if (!$result = $db->query($sql)) {
@@ -43,10 +49,17 @@ SQL;
     }
 
 } else {
+
+    if ($where === 'pgsql') {
+        $where = "date_part('year', created) = date_part('year', CURRENT_DATE)";
+    } else {
+        $where = "YEAR(created) = YEAR(CURDATE())";
+    }
+
 $sql = <<<SQL
     SELECT amount
     FROM {$table}
-    WHERE date_part('year', created) = date_part('year', CURRENT_DATE)
+    WHERE $where
 SQL;
 
     if (!$result = $db->query($sql)) {
