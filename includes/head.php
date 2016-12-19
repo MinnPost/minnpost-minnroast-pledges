@@ -1,7 +1,7 @@
 <?php
-echo 'files exist? ' . dirname(__FILE__) . '/config.php' . 
-file_exists(dirname(__FILE__) . '/config.php');
-//require_once('/../../../../includes/config.php');
+echo 'files exist? ' .
+file_exists('includes/config.php');
+require_once('includes/config.php');
 ?>
 <!doctype html>
 
