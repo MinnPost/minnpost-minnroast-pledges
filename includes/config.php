@@ -16,6 +16,7 @@ $db = new PDO("$dbtype:dbname=$dbname;host=$host", $dbuser, $dbpass);
 
 $table = getenv('DATABASE_TABLE');
 $allowed_domains = explode(',', getenv('ALLOWED_DOMAINS'));
+$salesforce_id = getenv('SALESFORCE_ID');
 
 if (!isset($_SERVER['HTTP_HOST']) || !in_array($_SERVER['HTTP_HOST'], $allowed_domains)) {
     header($_SERVER['SERVER_PROTOCOL'].' 400 Bad Request');
@@ -23,7 +24,11 @@ if (!isset($_SERVER['HTTP_HOST']) || !in_array($_SERVER['HTTP_HOST'], $allowed_d
 } else {
 	$protocol = stripos($_SERVER['SERVER_PROTOCOL'],'https') === true ? 'https://' : 'http://';
 	$url = $protocol . $_SERVER['HTTP_HOST'];
-	$sql = $db->prepare("SELECT id, title, main_label, thanks_label FROM campaigns WHERE url = '" . $_SERVER['HTTP_HOST'] . "' LIMIT 1");
+	if ($salesforce_id != FALSE) {
+		$sql = $db->prepare("SELECT id, title, main_label, thanks_label FROM campaigns WHERE salesforce_id = '" . $salesforce_id . "' LIMIT 1");
+	} else {
+		$sql = $db->prepare("SELECT id, title, main_label, thanks_label FROM campaigns WHERE url = '" . $_SERVER['HTTP_HOST'] . "' LIMIT 1");	
+	}
 	$sql->execute();
 	$row = $sql->fetch();
 	$title = $row['title'];
