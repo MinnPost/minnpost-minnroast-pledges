@@ -23,7 +23,7 @@ if (!isset($_SERVER['HTTP_HOST']) || !in_array($_SERVER['HTTP_HOST'], $allowed_d
 } else {
 	$protocol = stripos($_SERVER['SERVER_PROTOCOL'],'https') === true ? 'https://' : 'http://';
 	$url = $protocol . $_SERVER['HTTP_HOST'];
-	$sql = $db->prepare('SELECT id, title, main_label, thanks_label FROM campaigns WHERE url = "' . $_SERVER['HTTP_HOST'] . '" LIMIT 1');
+	$sql = $db->prepare("SELECT id, title, main_label, thanks_label FROM campaigns WHERE url = '" . $_SERVER['HTTP_HOST'] . "' LIMIT 1");
 	$sql->execute();
 	$row = $sql->fetch();
 	$title = $row['title'];
