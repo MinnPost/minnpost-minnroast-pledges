@@ -12,7 +12,7 @@ The campaign will be set based on the SALESFORCE_ID environment variable in Hero
 2. Add an entry to the campaigns table in the Heroku database.
 
 '''
-heroku pg:psql --app minnpost-pledges-test
+heroku pg:psql --app appname
 '''
 
 '''
