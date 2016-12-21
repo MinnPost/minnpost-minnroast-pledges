@@ -15,7 +15,19 @@ $dbpass = getenv('DATABASE_PASS');
 $db = new PDO("$dbtype:dbname=$dbname;host=$host", $dbuser, $dbpass); 
 
 $table = getenv('DATABASE_TABLE');
-$url = getenv('ROOT_URL');
-$title = getenv('TITLE');
-$main_label = getenv('MAIN_LABEL');
-$thanks_label = getenv('THANKS_LABEL');
+$allowed_domains = explode(',', getenv('ALLOWED_DOMAINS'));
+
+if (!isset($_SERVER['HTTP_HOST']) || !in_array($_SERVER['HTTP_HOST'], $allowed_domains)) {
+    header($_SERVER['SERVER_PROTOCOL'].' 400 Bad Request');
+    exit;
+} else {
+	$protocol = stripos($_SERVER['SERVER_PROTOCOL'],'https') === true ? 'https://' : 'http://';
+	$url = $protocol . $_SERVER['HTTP_HOST'];
+	$sql = $db->prepare('SELECT id, title, main_label, thanks_label FROM campaigns WHERE url = "' . $_SERVER['HTTP_HOST'] . '" LIMIT 1');
+	$sql->execute();
+	$row = $sql->fetch();
+	$title = $row['title'];
+	$main_label = $row['main_label'];
+	$thanks_label = $row['thanks_label'];
+	$campaign = $row['id'];
+}

@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST') {
 	}
 
 	if ( isset($email) && isset($amount) && $valid == TRUE) {
-		$sql = "INSERT INTO {$table} (email, amount, created, charge_if_on_file) VALUES ('$email', '$amount', NOW(), '$charge_if_on_file' )";
+		$sql = "INSERT INTO {$table} (email, amount, created, charge_if_on_file, campaign) VALUES ('$email', '$amount', NOW(), '$charge_if_on_file', '$campaign' )";
 		if (!$result = $db->query($sql)) {
 			die('There was an error running the query [' . print_r($db->errorInfo()) . ']');
 		} else {

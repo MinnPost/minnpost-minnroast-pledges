@@ -39,7 +39,7 @@ if ($details == true) {
 $sql = <<<SQL
     SELECT *
     FROM {$table}
-    WHERE $where
+    WHERE $where AND campaign = $campaign
 SQL;
 
     if (!$result = $db->query($sql)) {
@@ -59,7 +59,7 @@ SQL;
 $sql = <<<SQL
     SELECT amount
     FROM {$table}
-    WHERE $where
+    WHERE $where AND campaign = $campaign
 SQL;
 
     if (!$result = $db->query($sql)) {
