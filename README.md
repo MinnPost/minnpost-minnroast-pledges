@@ -36,3 +36,17 @@ INSERT INTO "campaigns" (url, title, main_label, thanks_label, salesforce_id) VA
 '''
 
 The `salesforce_id` field can be left off, but if it is the only way to set the campaign is by a domain.
+
+## Local development
+
+You should be able to use Postgres or MySQL for local development, although with either one you have to use PDO. This may require some installation work with the local PHP, depending on how you run it. Homebrew can achieve this, but it does require a lot of flags.
+
+You will also have to set the `include_path` variable. The easiest way is:
+
+```
+<IfModule mod_php5.c>
+php_value include_path ".:/local-path-to-site-root/"
+</IfModule>
+```
+
+You will also need to set up the `.env` file with variables for your local install. You should be able to start with the `.env-sample` file in the repository by duplicating the file as `.env`.
