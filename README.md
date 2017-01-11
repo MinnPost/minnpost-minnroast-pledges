@@ -27,13 +27,13 @@ The possible settings are listed in `.env-sample`. Here is what each setting is:
 1. Register the domain, and point it to the Heroku hostname.
 2. Add an entry to the campaigns table in the Heroku database.
 
-'''
+```
 heroku pg:psql --app appname
-'''
+```
 
-'''
+```
 INSERT INTO "campaigns" (url, title, main_label, thanks_label, salesforce_id) VALUES ('domain','title','pledge headline','thanks headline','salesforceidforcampaign');
-'''
+```
 
 The `salesforce_id` field can be left off, but if it is the only way to set the campaign is by a domain.
 
