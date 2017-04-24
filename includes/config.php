@@ -18,16 +18,19 @@ $table = getenv('DATABASE_TABLE');
 $allowed_domains = explode(',', getenv('ALLOWED_DOMAINS'));
 $salesforce_id = getenv('SALESFORCE_ID');
 
-if (!isset($_SERVER['HTTP_HOST']) || !in_array($_SERVER['HTTP_HOST'], $allowed_domains)) {
+// remove www in case we forget to add that to the allowed domains list
+$server_name = str_replace('www.', '', $_SERVER['HTTP_HOST']);
+
+if (!isset($server_name) || !in_array($server_name, $allowed_domains)) {
     header($_SERVER['SERVER_PROTOCOL'].' 400 Bad Request');
     exit;
 } else {
 	$protocol = stripos($_SERVER['SERVER_PROTOCOL'],'https') === true ? 'https://' : 'http://';
-	$url = $protocol . $_SERVER['HTTP_HOST'];
+	$url = $protocol . $server_name;
 	if ($salesforce_id != FALSE) {
 		$sql = $db->prepare("SELECT id, title, main_label, thanks_label FROM campaigns WHERE salesforce_id = '" . $salesforce_id . "' LIMIT 1");
 	} else {
-		$sql = $db->prepare("SELECT id, title, main_label, thanks_label FROM campaigns WHERE url = '" . $_SERVER['HTTP_HOST'] . "' LIMIT 1");	
+		$sql = $db->prepare("SELECT id, title, main_label, thanks_label FROM campaigns WHERE url = '" . $server_name . "' LIMIT 1");	
 	}
 	$sql->execute();
 	$row = $sql->fetch();
