@@ -37,6 +37,26 @@ INSERT INTO "campaigns" (url, title, main_label, thanks_label, salesforce_id) VA
 
 The `salesforce_id` field can be left off, but if it is the only way to set the campaign is by a domain.
 
+## To update an existing campaign
+
+1. Find the entry you want to update in the Heroku database.
+
+```
+heroku pg:psql --app appname
+```
+
+```
+SELECT * FROM campaigns;
+```
+
+Find the `id` of the column you want to update.
+
+2. Edit the info. For example, update the `main_label`.
+
+```
+UPDATE campaigns SET main_label = 'foo' WHERE id = 2;
+```
+
 ## Local development
 
 You should be able to use Postgres or MySQL for local development, although with either one you have to use PDO. This may require some installation work with the local PHP, depending on how you run it. Homebrew can achieve this, but it does require a lot of flags.
