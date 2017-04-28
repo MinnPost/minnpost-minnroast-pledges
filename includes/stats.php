@@ -77,7 +77,8 @@ SQL;
         if (!$count_result = $db->query($sql_count)) {
             die('There was an error running the query [' . $db->error . ']');
         } else {
-        $count = $count_result->fetchColumn();
+            $count = $count_result->fetchColumn();
+        }
         require_once('includes/summary.php');
     }
 
