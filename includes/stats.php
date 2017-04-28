@@ -78,6 +78,11 @@ SQL;
             die('There was an error running the query [' . $db->error . ']');
         } else {
             $count = $count_result->fetchColumn();
+            if ($count === 1) {
+                $word = 'pledge';
+            } else {
+                $word = 'pledges';
+            }
         }
         require_once('includes/summary.php');
     }
