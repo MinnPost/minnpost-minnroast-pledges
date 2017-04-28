@@ -69,6 +69,7 @@ SQL;
         while($row = $result->fetch(PDO::FETCH_ASSOC)){
             $total = (int) $total + (int) $row['amount'];
         }
+        $count = $db->query('SELECT count(*) FROM {$table} WHERE ' . $where . ' AND campaign = ' . $campaign)->fetchColumn();
         require_once('includes/summary.php');
     }
 
