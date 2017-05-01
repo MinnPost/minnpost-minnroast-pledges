@@ -57,6 +57,21 @@ Find the `id` of the column you want to update.
 UPDATE campaigns SET main_label = 'foo' WHERE id = 2;
 ```
 
+## To export results from Heroku
+
+Use [Dataclips](https://devcenter.heroku.com/articles/dataclips) to export results of a SQL query to share. They can be viewed in the browser at a unique URL that Heroku will create when the query runs, or they can be exported as JSON, CSV, XML, or Microsoft Excel documents.
+
+Example query:
+
+```
+SELECT *
+FROM pledges p
+INNER JOIN campaigns c ON p.campaign = c.id
+WHERE c.id = 1 AND date_part('year', created) = date_part('year', CURRENT_DATE)
+```
+
+Note: Heroku may have a lot of databases, even for the same app, so you might have to try more than once to find the one that has the data.
+
 ## Local development
 
 You should be able to use Postgres or MySQL for local development, although with either one you have to use PDO. This may require some installation work with the local PHP, depending on how you run it. Homebrew can achieve this, but it does require a lot of flags.
