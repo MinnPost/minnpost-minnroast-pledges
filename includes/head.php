@@ -9,7 +9,7 @@
 
 <head>
 <title>MinnPost | <?php echo $title; ?></title>
-<link rel="shortcut icon" href="//www.minnpost.com/sites/default/themes/siteskin/favicon.ico" type="image/x-icon" />
+<link rel="shortcut icon" href="https://www.minnpost.com/wp-content/uploads/sites/default/themes/siteskin/favicon.ico" type="image/x-icon" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <link rel="stylesheet" href="bower_components/minnpost-styles/dist/minnpost-styles.min.css">
@@ -23,7 +23,7 @@
 
   <header class="minnpost-page-container">
         <a href="<?php echo $url; ?>" class="logo clearfix">
-            <img src="https://www.minnpost.com/sites/default/themes/siteskin/inc/images/logo.png" alt="MinnPost">
+            <img src="https://www.minnpost.com/wp-content/uploads/sites/default/themes/siteskin/inc/images/logo.png" alt="MinnPost">
         </a>
     </header>
 
