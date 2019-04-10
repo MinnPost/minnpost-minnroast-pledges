@@ -85,3 +85,31 @@ php_value include_path ".:/local-path-to-site-root/"
 ```
 
 You will also need to set up the `.env` file with variables for your local install. You should be able to start with the `.env-sample` file in the repository by duplicating the file as `.env`.
+
+### Database schema
+
+Here is a schema of the required tables. You will want to create these to run the application locally.
+
+#### MySQL
+
+```sql
+CREATE TABLE campaigns (
+    id int(11) auto_increment NOT NULL,
+    url text NOT NULL,
+    title text NOT NULL,
+    main_label text NOT NULL,
+    thanks_label text NOT NULL,
+    salesforce_id varchar(255) DEFAULT ''
+, PRIMARY KEY(`id`)
+);
+
+CREATE TABLE pledges (
+    id int(11) auto_increment NOT NULL,
+    email text NOT NULL,
+    amount numeric(50,2) NOT NULL,
+    created timestamp DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    charge_if_on_file bool,
+    campaign int(11) NOT NULL
+, PRIMARY KEY(`id`)
+);
+```
