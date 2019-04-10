@@ -17,7 +17,6 @@ $db = new PDO( "$dbtype:dbname=$dbname;host=$host", $dbuser, $dbpass );
 $table           = getenv( 'DATABASE_TABLE' );
 $allowed_domains = explode( ',', getenv( 'ALLOWED_DOMAINS' ) );
 $salesforce_id   = getenv( 'SALESFORCE_ID' );
-error_log( 'sf id is ' . $salesforce_id );
 
 $board_show_count = filter_var( getenv( 'BOARD_SHOW_COUNT' ), FILTER_VALIDATE_BOOLEAN );
 $board_show_names = filter_var( getenv( 'BOARD_SHOW_NAMES' ), FILTER_VALIDATE_BOOLEAN );
@@ -32,10 +31,9 @@ if ( ! isset( $server_name ) || ! in_array( $server_name, $allowed_domains, true
 	$protocol = stripos( $_SERVER['SERVER_PROTOCOL'], 'https' ) === true ? 'https://' : 'http://';
 	$url      = $protocol . $server_name;
 	if ( false !== $salesforce_id ) {
-		error_log( 'it is not false' );
-		$sql = $db->prepare( 'SELECT id, title, main_label, thanks_label FROM campaigns WHERE salesforce_id = "' . $salesforce_id . '" LIMIT 1' );
+		$sql = $db->prepare( "SELECT id, title, main_label, thanks_label FROM campaigns WHERE salesforce_id = '" . $salesforce_id . "' LIMIT 1" );
 	} else {
-		$sql = $db->prepare( 'SELECT id, title, main_label, thanks_label FROM campaigns WHERE url = "' . $server_name . '" LIMIT 1' );
+		$sql = $db->prepare( "SELECT id, title, main_label, thanks_label FROM campaigns WHERE url = '" . $server_name . "' LIMIT 1" );
 	}
 	$sql->execute();
 	$row          = $sql->fetch();
@@ -43,5 +41,4 @@ if ( ! isset( $server_name ) || ! in_array( $server_name, $allowed_domains, true
 	$main_label   = $row['main_label'];
 	$thanks_label = $row['thanks_label'];
 	$campaign     = $row['id'];
-	error_log( 'campaign is ' . $campaign );
 }
