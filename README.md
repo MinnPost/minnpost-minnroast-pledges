@@ -21,6 +21,8 @@ The possible settings are listed in `.env-sample`. Here is what each setting is:
 9. `DATABASE_TABLE`: What table in the database to use. This is helpful for switching between a table full of test data and one full of real data.
 10. `ALLOWED_DOMAINS`: A comma separated list of domains without the protocol. Ex: 'voteminnpost.dev,mrpledge.dev'
 11. `SALESFORCE_ID`: An ID for a Salesforce campaign that corresponds to a campaign in the app's database. If you use this, currently, the app will only use that campaign.
+12. `BOARD_SHOW_COUNT`: A true or false value for whether the board of pledges should show the total count.
+13. `BOARD_SHOW_NAMES`: A true or false value for whether the board of pledges should rotate through names that are provided in the form.
 
 ## To add a new campaign
 

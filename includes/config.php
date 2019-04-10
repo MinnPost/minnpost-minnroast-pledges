@@ -18,6 +18,9 @@ $table = getenv('DATABASE_TABLE');
 $allowed_domains = explode(',', getenv('ALLOWED_DOMAINS'));
 $salesforce_id = getenv('SALESFORCE_ID');
 
+$board_show_count = filter_var( getenv( 'BOARD_SHOW_COUNT' ), FILTER_VALIDATE_BOOLEAN );
+$board_show_names = filter_var( getenv( 'BOARD_SHOW_NAMES' ), FILTER_VALIDATE_BOOLEAN );
+
 // remove www in case we forget to add that to the allowed domains list
 $server_name = str_replace('www.', '', $_SERVER['HTTP_HOST']);
 

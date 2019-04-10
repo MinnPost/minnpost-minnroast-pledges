@@ -24,7 +24,7 @@ $(document).ready(function() {
 		$('.all-pledges').wrap('<div class="results"></div>');
 		refreshTable(true);
 	} else {
-		$('.total-pledges').wrap('<div class="results"></div>');
+		$('.board').wrap('<div class="results"></div>');
 		refreshTable(false);
 	}
 });
