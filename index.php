@@ -1,3 +1,5 @@
-<?php require_once('includes/head.php'); ?>
-<?php require_once('includes/run.php'); ?>    
-<?php require_once('includes/footer.php'); ?>
+<?php
+
+require_once( 'includes/head.php' );
+require_once( 'includes/run.php' );
+require_once( 'includes/footer.php' );
