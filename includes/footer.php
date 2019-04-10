@@ -1,8 +1,4 @@
-</main>
-
-  <footer class="minnpost-page-container">
-    <small>MinnPost | 900 6th Avenue SE | Minneapolis, MN 55414 | 612.455.6950</small>
-  </footer>
+	</main>
 
 </div>
 
