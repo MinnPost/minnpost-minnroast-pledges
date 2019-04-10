@@ -65,7 +65,7 @@ SQL;
 SQL;
 	/* end board amount sql */
 	if ( ! $result = $db->query( $sql ) ) {
-		die( 'There was an error running the query: [' . $db->error . ']' );
+		die( 'There was an error running the query: [' . $db->error . ']. the query is ' . $sql );
 	} else {
 		$total = '';
 		while( $row = $result->fetch( PDO::FETCH_ASSOC ) ) {
