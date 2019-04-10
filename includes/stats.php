@@ -106,7 +106,7 @@ SQL;
 		/* end names (not displayed yet) sql */
 		if ( true === $board_show_names ) {
 			if ( ! $count_name_result = $db->query( $sql_name_count ) ) {
-				die( 'There was an error running the query [' . $db->error . ']' );
+				die( 'There was an error running the query [' . $db->error . ']. query is ' . $sql_name_count );
 			} else {
 				$name_row_count = filter_var( $count_name_result->fetchColumn(), FILTER_VALIDATE_INT );
 			}
@@ -120,7 +120,7 @@ SQL;
 				SQL;
 				/* end names (all) sql */
 				if ( ! $name_result = $db->query( $sql_name ) ) {
-					die( 'There was an error running the query [' . $db->error . ']' );
+					die( 'There was an error running the query [' . $db->error . ']. query is ' . $sql_name );
 				} else {
 					$name = $name_result->fetchColumn();
 				}
@@ -132,7 +132,7 @@ SQL;
 					WHERE $where AND campaign = $campaign and name_displayed = 0 $orderby DESC LIMIT 1
 				SQL;
 				if ( ! $name_result = $db->query( $sql_name ) ) {
-					die( 'There was an error running the query [' . $db->error . ']' );
+					die( 'There was an error running the query [' . $db->error . ']. query is ' . $sql_name );
 				} else {
 					$name = $name_result->fetchColumn();
 				}
@@ -147,7 +147,7 @@ SQL;
 				SQL;
 				/* end update displayed value for name sql */
 				if ( ! $result = $db->query( $sql_showed_name ) ) {
-					die( 'There was an error running the query [' . print_r( $db->errorInfo() ) . ']' );
+					die( 'There was an error running the query [' . print_r( $db->errorInfo() ) . ']. query is ' . $sql_showed_name );
 				}
 			}
 		}
