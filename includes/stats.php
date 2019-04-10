@@ -98,14 +98,18 @@ SQL;
 			$orderby = 'ORDER BY RAND()';
 		}
 		/* start names (not displayed yet) sql */
-		$sql_name = <<<SQL
-			SELECT name
+		$sql_name_count = <<<SQL
+			SELECT COUNT(*)
 			FROM {$table}
 			WHERE $where AND campaign = $campaign and name_displayed = 0 $orderby DESC LIMIT 1
 		SQL;
 		/* end names (not displayed yet) sql */
 		if ( true === $board_show_names ) {
-			$name_row_count = $db->query( $sql_name )->rowCount();
+			if ( ! $count_name_result = $db->query( $sql_name_count ) ) {
+				die( 'There was an error running the query [' . $db->error . ']' );
+			} else {
+				$name_row_count = filter_var( $count_name_result->fetchColumn(), FILTER_VALIDATE_INT );
+			}
 			if ( 0 === $name_row_count ) {
 				$showed_name = false;
 				/* start names (all) sql */
@@ -122,6 +126,11 @@ SQL;
 				}
 			} else {
 				$showed_name = true;
+				$sql_name    = <<<SQL
+					SELECT name
+					FROM {$table}
+					WHERE $where AND campaign = $campaign and name_displayed = 0 $orderby DESC LIMIT 1
+				SQL;
 				if ( ! $name_result = $db->query( $sql_name ) ) {
 					die( 'There was an error running the query [' . $db->error . ']' );
 				} else {
