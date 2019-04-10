@@ -13,7 +13,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <link rel="stylesheet" href="bower_components/minnpost-styles/dist/minnpost-styles.min.css">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="assets/css/style.min.css">
 
 </head>
 
