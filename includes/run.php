@@ -14,6 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST') {
 		$email = '';
 	}
 	$amount = '';
+	$name   = '';
 	require_once('includes/form.php');
 } else {
 	$valid = TRUE;
@@ -29,6 +30,12 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST') {
     	$valid = FALSE;
 	}
 
+	if ( isset( $_POST['name'] ) ) {
+		$name = filter_var($_POST['name'], FILTER_SANITIZE_STRING);
+	} else {
+		$name = '';
+	}
+
 	if (!isset($_POST['charge_if_on_file'])) {
 		$charge_if_on_file = 0;
 	} else {
@@ -36,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST') {
 	}
 
 	if ( isset($email) && isset($amount) && $valid == TRUE) {
-		$sql = "INSERT INTO {$table} (email, amount, created, charge_if_on_file, campaign) VALUES ('$email', '$amount', NOW(), '$charge_if_on_file', '$campaign' )";
+		$sql = "INSERT INTO {$table} (email, name, amount, created, charge_if_on_file, campaign) VALUES ('$email', '$name', '$amount', NOW(), '$charge_if_on_file', '$campaign' )";
 		if (!$result = $db->query($sql)) {
 			die('There was an error running the query [' . print_r($db->errorInfo()) . ']');
 		} else {

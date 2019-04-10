@@ -8,6 +8,13 @@
         </div>
 
         <div class="form-item">
+            <label>Name
+              <input type="text" autocapitalize="off" autocorrect="off" name="name" id="name">
+            </label>
+            <p><small>If you don't want your name to be displayed, you can leave it out.</small></p>
+        </div>
+
+        <div class="form-item">
             <label>Amount <span class="currencyinput">$</span>
               <input type="number" value="<?php echo $amount; ?>" name="amount" id="amount" required="required" min="1" step="any">
             </label>
