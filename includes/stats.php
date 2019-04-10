@@ -101,7 +101,7 @@ SQL;
 		$sql_name_count = <<<SQL
 			SELECT COUNT(*)
 			FROM {$table}
-			WHERE $where AND campaign = $campaign and name_displayed = 0 $orderby DESC LIMIT 1
+			WHERE $where AND campaign = $campaign and name_displayed = '0' $orderby DESC LIMIT 1
 		SQL;
 		/* end names (not displayed yet) sql */
 		if ( true === $board_show_names ) {
@@ -129,7 +129,7 @@ SQL;
 				$sql_name    = <<<SQL
 					SELECT name
 					FROM {$table}
-					WHERE $where AND campaign = $campaign and name_displayed = 0 $orderby DESC LIMIT 1
+					WHERE $where AND campaign = $campaign and name_displayed = '0' $orderby DESC LIMIT 1
 				SQL;
 				if ( ! $name_result = $db->query( $sql_name ) ) {
 					die( 'There was an error running the query [' . $db->error . ']. query is ' . $sql_name );
