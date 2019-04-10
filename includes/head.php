@@ -1,4 +1,4 @@
-<?php require_once('includes/config.php'); ?>
+<?php require_once( 'includes/config.php' ); ?>
 <!doctype html>
 
 <!--[if lt IE 7]> <html class="no-js ie ie6 lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en" xmlns:og="http://opengraphprotocol.org/schema/"> <![endif]-->
@@ -21,10 +21,10 @@
 
 <div class="mp">
 
-  <header class="minnpost-page-container">
-        <a href="<?php echo $url; ?>" class="logo clearfix">
-            <img src="https://www.minnpost.com/wp-content/uploads/sites/default/themes/siteskin/inc/images/logo.png" alt="MinnPost">
-        </a>
-    </header>
+	<header class="minnpost-page-container">
+		<a href="<?php echo $url; ?>" class="logo clearfix">
+			<img src="https://www.minnpost.com/wp-content/uploads/sites/default/themes/siteskin/inc/images/logo.png" alt="MinnPost">
+		</a>
+	</header>
 
-    <main class="minnpost-page-container">
+	<main class="minnpost-page-container">
