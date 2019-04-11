@@ -11,7 +11,7 @@
 		<?php endif; ?>
 	</div>
 	<?php if ( true === $board_show_names_heading ) : ?>
-		<h3>Thanks to these generous supporters for your pledge tonight:</h3>
+		<h3>Thank you to these supporters:</h3>
 		<?php $name_class_ext = ' name-after-heading'; ?>
 	<?php endif; ?>
 	<?php if ( ! empty( $name ) && true === $board_show_names ) : ?>
@@ -20,6 +20,6 @@
 		</div>
 	<?php endif; ?>
 	<?php if ( true === $board_show_pledge_heading ) : ?>
-		<h3>PLEDGE NOW: <a href="http://mrpledge.com">MRpledge.com</a></h3>
+		<h3>PLEDGE NOW: MRpledge.com</h3>
 	<?php endif; ?>
 </section>
