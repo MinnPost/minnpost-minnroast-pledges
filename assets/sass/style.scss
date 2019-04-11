@@ -7,6 +7,10 @@ $minnpost-red: #801019;
 	max-width: 600px;
 	margin: 0 auto;
 }
+.logo img {
+	display: block;
+	margin: 0 auto;
+}
 .mp .form-item {
 	margin-bottom: 1.5em;
 	max-width: 500px;
@@ -55,6 +59,10 @@ $minnpost-red: #801019;
 		margin: 0 0 0.5em 0;
 		padding: 0.5em 0;
 	}
+}
+
+.board h3 {
+	text-align: center;
 }
 
 .mp .name {
