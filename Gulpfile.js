@@ -8,6 +8,7 @@ const sourcemaps = require('gulp-sourcemaps');
 const sassGlob = require('gulp-sass-glob');
 const uglify = require('gulp-uglify');
 const concat = require('gulp-concat');
+const imagemin = require('gulp-imagemin');
 const rename = require('gulp-rename');
 const babel = require('gulp-babel');
 const browserSync = require('browser-sync').create();
@@ -22,6 +23,10 @@ const config = {
   scripts: {
     js: './assets/js/**/*.js',
     dest: './assets/js'
+  },
+  images: {
+    srcDir: './assets/img/*',
+    dest: './assets/img'
   },
   browserSync: {
     active: false,
@@ -63,6 +68,28 @@ function scripts() {
     .pipe(browserSync.stream());
 }
 
+function images() {
+  // Optimize Images
+  return gulp
+    .src(config.images.srcDir)
+    .pipe(
+      imagemin([
+        imagemin.gifsicle({ interlaced: true }),
+        imagemin.jpegtran({ progressive: true }),
+        imagemin.optipng({ optimizationLevel: 5 }),
+        imagemin.svgo({
+          plugins: [
+            {
+              removeViewBox: false,
+              collapseGroups: true
+            }
+          ]
+        })
+      ])
+    )
+    .pipe(gulp.dest(config.images.dest));
+}
+
 // Injects changes into browser
 function browserSyncTask() {
   if (config.browserSync.active) {
@@ -92,6 +119,7 @@ function watch() {
 // export tasks
 exports.styles = styles;
 exports.scripts = scripts;
+exports.images = images;
 exports.watch = watch;
 
 // What happens when we run gulp?
