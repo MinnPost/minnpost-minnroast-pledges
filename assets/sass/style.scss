@@ -4,7 +4,7 @@ $minnpost-red: #801019;
 	margin-top: 1em;
 }
 .mp {
-	max-width: 600px;
+	//max-width: 600px;
 	margin: 0 auto;
 }
 .logo img {
@@ -68,6 +68,7 @@ $minnpost-red: #801019;
 	background: $minnpost-red;
 	color: #fff;
 	padding: 1em 0;
+	line-height: 1.25em;
 
 	-webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
        -moz-animation: fadein 2s; /* Firefox < 16 */
