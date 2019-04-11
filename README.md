@@ -23,6 +23,10 @@ The possible settings are listed in `.env-sample`. Here is what each setting is:
 11. `SALESFORCE_ID`: An ID for a Salesforce campaign that corresponds to a campaign in the app's database. If you use this, currently, the app will only use that campaign.
 12. `BOARD_SHOW_COUNT`: A true or false value for whether the board of pledges should show the total count.
 13. `BOARD_SHOW_NAMES`: A true or false value for whether the board of pledges should rotate through names that are provided in the form.
+14. `BOARD_SHOW_TOTAL_HEADING': A true or false value for whether the board of pledges should display a heading before the total amount.
+15. `BOARD_SHOW_NAMES_HEADING': A true or false value for whether the board of pledges should display a heading before the name displays;
+16. `BOARD_SHOW_PLEDGE_HEADING': A true or false value for whether the board of pledges should display a heading with the pledge URL.
+17. `DEFAULT_IMAGE_URL`: the default image URL for the logo at the top.
 
 ## To add a new campaign
 
@@ -34,10 +38,12 @@ heroku pg:psql --app appname
 ```
 
 ```
-INSERT INTO "campaigns" (url, title, main_label, thanks_label, salesforce_id) VALUES ('domain','title','pledge headline','thanks headline','salesforceidforcampaign');
+INSERT INTO "campaigns" (url, title, main_label, thanks_label, salesforce_id, image_url) VALUES ('domain','title','pledge headline','thanks headline','salesforceidforcampaign','imageurl');
 ```
 
 The `salesforce_id` field can be left off, but if it is the only way to set the campaign is by a domain.
+
+The `image_url` field can be left off; if it is, the default image URL will be used.
 
 ## To update an existing campaign
 
@@ -123,23 +129,28 @@ Here is a schema of the required tables. You will want to create these to run th
 #### MySQL
 
 ```sql
-CREATE TABLE campaigns (
-    id int(11) auto_increment NOT NULL,
-    url text NOT NULL,
-    title text NOT NULL,
-    main_label text NOT NULL,
-    thanks_label text NOT NULL,
-    salesforce_id varchar(255) DEFAULT ''
-, PRIMARY KEY(`id`)
+CREATE TABLE `campaigns` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `url` text NOT NULL,
+  `title` text NOT NULL,
+  `main_label` text NOT NULL,
+  `thanks_label` text NOT NULL,
+  `salesforce_id` varchar(255) DEFAULT '',
+  `image_url` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 );
+```
 
-CREATE TABLE pledges (
-    id int(11) auto_increment NOT NULL,
-    email text NOT NULL,
-    amount numeric(50,2) NOT NULL,
-    created timestamp DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    charge_if_on_file bool,
-    campaign int(11) NOT NULL
-, PRIMARY KEY(`id`)
+```sql
+CREATE TABLE `pledges` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `email` text NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `name_displayed` tinyint(1) NOT NULL DEFAULT '0',
+  `amount` decimal(50,2) NOT NULL,
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `charge_if_on_file` tinyint(1) DEFAULT NULL,
+  `campaign` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
 );
 ```

@@ -47,6 +47,10 @@ $minnpost-red: #801019;
 	background: #ddd;
 	padding: 1em 0;
 	line-height: normal;
+	&.total-pledges-after-heading {
+		margin: 0 0 0.5em 0;
+		padding: 0.75em 0;
+	}
 }
 
 .mp .name {
@@ -62,6 +66,10 @@ $minnpost-red: #801019;
         -ms-animation: fadein 2s; /* Internet Explorer */
          -o-animation: fadein 2s; /* Opera < 12.1 */
             animation: fadein 2s;
+
+   &.name-after-heading {
+		padding: 0.75em 0;
+   }
 }
 
 @keyframes fadein {

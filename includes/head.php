@@ -23,7 +23,7 @@
 
 	<header class="minnpost-page-container">
 		<a href="<?php echo $url; ?>" class="logo clearfix">
-			<img src="https://www.minnpost.com/wp-content/uploads/sites/default/themes/siteskin/inc/images/logo.png" alt="MinnPost">
+			<img src="<?php echo $image_url; ?>" alt="MinnPost">
 		</a>
 	</header>
 
