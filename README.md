@@ -76,9 +76,13 @@ Note: Heroku may have a lot of databases, even for the same app, so you might ha
 
 ## Local development
 
-You should be able to use Postgres or MySQL for local development, although with either one you have to use PDO. This may require some installation work with the local PHP, depending on how you run it. Homebrew can achieve this, but it does require a lot of flags.
+You should be able to use Postgres or MySQL for local development, although with either one you have to use PDO. This may require some installation work with the local PHP, depending on how you run it. Homebrew can achieve this, and it appears to be built into PHP as of 2019.
 
-You will also have to set the `include_path` variable. The easiest way is:
+You will need to set up the `.env` file with variables for your local install. You should be able to start with the `.env-sample` file in the repository by duplicating the file as `.env`.
+
+You will need to set the `include_path` variable. This varies depending on your local development environment.
+
+### Apache
 
 ```
 <IfModule mod_php5.c>
@@ -86,7 +90,31 @@ php_value include_path ".:/local-path-to-site-root/"
 </IfModule>
 ```
 
-You will also need to set up the `.env` file with variables for your local install. You should be able to start with the `.env-sample` file in the repository by duplicating the file as `.env`.
+### Laravel Valet
+
+If you use Laravel Valet, an easy way to achieve this is to create a file called `LocalValetDriver.php` in the root of your site. This file should contain the following code:
+
+```php
+<?php
+
+class LocalValetDriver extends BasicValetDriver
+{
+    /**
+     * Determine if the driver serves the request.
+     *
+     * @param  string  $sitePath
+     * @param  string  $siteName
+     * @param  string  $uri
+     * @return bool
+     */
+    public function serves($sitePath, $siteName, $uri)
+    {
+        set_include_path( '/full-path-to-your-site-root/' );
+        return true;
+    }
+
+}
+```
 
 ### Database schema
 
