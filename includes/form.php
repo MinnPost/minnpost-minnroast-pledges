@@ -21,7 +21,7 @@
 		</div>
 
 		<div class="form-item checkbox">
-			<label>Charge your credit card if MinnPost has it on file
+			<label>Charge your payment method if MinnPost has it on file
 				<input type="checkbox" name="charge_if_on_file" id="charge_if_on_file" value="1" checked>
 			</label>
 		</div>
