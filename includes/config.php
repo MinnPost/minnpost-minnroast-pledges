@@ -6,11 +6,14 @@ if ( file_exists( get_include_path() . '.env' ) ) {
 	$dotenv->load();
 }
 
-$dbtype = getenv( 'DATABASE_TYPE' );
-$dbname = getenv( 'DATABASE_NAME' );
-$host   = getenv( 'DATABASE_HOST' );
-$dbuser = getenv( 'DATABASE_USER' );
-$dbpass = getenv( 'DATABASE_PASS' );
+$database_url = getenv( 'DATABASE_URL' );
+
+$database_url_parts = parse_url($database_url);
+$dbtype = isset( $database_url_parts['scheme'] ) ? $database_url_parts['scheme'] : getenv( 'DATABASE_TYPE' );
+$dbname = isset( $database_url_parts['database'] ) ? $database_url_parts['database'] : getenv( 'DATABASE_NAME' );
+$host = isset( $database_url_parts['host'] ) ? $database_url_parts['host'] : getenv( 'DATABASE_HOST' );
+$dbuser = isset( $database_url_parts['user'] ) ? $database_url_parts['user'] : getenv( 'DATABASE_USER' );
+$dbpass = isset( $database_url_parts['pass'] ) ? $database_url_parts['pass'] : getenv( 'DATABASE_PASS' );
 
 $db = new PDO( "$dbtype:dbname=$dbname;host=$host", $dbuser, $dbpass ); 
 
@@ -44,10 +47,10 @@ if ( ! isset( $server_name ) || ! in_array( $server_name, $allowed_domains, true
 	}
 	$sql->execute();
 	$row          = $sql->fetch();
-	$title        = $row['title'];
-	$main_label   = $row['main_label'];
-	$thanks_label = $row['thanks_label'];
-	$campaign     = $row['id'];
+	$title        = isset( $row['title'] ) ? $row['title'] : '';
+	$main_label   = isset( $row['main_label'] ) ? $row['main_label'] : '';
+	$thanks_label = isset( $row['thanks_label'] ) ? $row['thanks_label'] : '';
+	$campaign     = isset( $row['id'] ) ? $row['id'] : '';
 	if ( isset( $row['image_url'] ) ) {
 		$image_url = $row['image_url'];
 	}
